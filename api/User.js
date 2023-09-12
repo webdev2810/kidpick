@@ -17,6 +17,23 @@ const bcrypt = require('bcrypt');
 // router.post('/update',UserController.update)
 // router.post('/delete',UserController.destroy)
 
+
+// //Show the list of Users
+router.get('/', (req, res) => {
+    User.find()
+    .then(response => {
+        res.json({
+            response
+        })
+    })
+    .catch(error => {
+        res.json({
+            message: "An error occured"
+        })
+    })
+})
+
+
 //Signup
 router.post('/signup', (req, res) => {
     let {name, phone, password,age, dateOfBirth, second_Phone, email, resedential_address, pinCode} = req.body;
@@ -202,20 +219,7 @@ router.post('/update', (req, res) => {
     })
 })
 
-// //Show the list of Users
-router.get('/', (req, res) => {
-    User.find()
-    .then(response => {
-        res.json({
-            response
-        })
-    })
-    .catch(error => {
-        res.json({
-            message: "An error occured"
-        })
-    })
-})
+
 
 
 module.exports = router;
